@@ -46,7 +46,7 @@ DMA_HandleTypeDef hdma_adc1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-uint32_t ADCData[4]={0}; // rank convertion
+uint32_t ADCData[4]={0}; // rank convertion / store information from ADC
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -96,8 +96,12 @@ int main(void)
   MX_USART2_UART_Init();
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
+
+
   //Start reading ADC w/ DMA
   HAL_ADC_Start_DMA(&hadc1, ADCData, 4); //(instant/Name container keep value/size of array) = CPU work another code and use DMA to help
+  	  	  	  	  	  	  	  	  	  // don't need to write start stop wait for ADC
+  	  	  	  	  	  	  	  	  	  // ADCData = container to store value / 4 = size of array to use
   /* USER CODE END 2 */
 
   /* Infinite loop */
